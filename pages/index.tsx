@@ -16,7 +16,7 @@ const HomePage: React.FC = () => {
     setTaskInput(e.target.value);
   };
 
-  const handleVoiceInput = () => {
+  /* const handleVoiceInput = () => {
     try {
       const SpeechRecognition =
         window.SpeechRecognition || (window as any).webkitSpeechRecognition;
@@ -38,7 +38,7 @@ const HomePage: React.FC = () => {
       };
 
       recognition.onerror = (event: SpeechRecognitionResult) => {
-        console.error("Speech recognition error", event.error);
+        console.error("Speech recognition error");
       };
 
       recognition.onend = () => {
@@ -54,7 +54,7 @@ const HomePage: React.FC = () => {
   const handleVoiceClose = () => {
     setVoiceClicked(false);
     toast.info("Voice recognition closed");
-  };
+  }; */
 
   const handleTimeChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSelectedTime(e.target.value);
@@ -110,6 +110,11 @@ const HomePage: React.FC = () => {
   };
 
   const handleSubmit = () => {
+    if (tasks.length === 0) {
+      toast.error("Please add tasks before submitting.");
+      return;
+    }
+
     const allTasksSubmitted = tasks.every(
       (task) => task.task.trim() !== "" && task.time !== ""
     );
@@ -181,14 +186,14 @@ const HomePage: React.FC = () => {
       </div>
       <div className="mb-4">
         <button
-          onClick={handleVoiceInput}
+          //onClick={handleVoiceInput}
           className="bg-white text-custom-bg px-4 py-2 rounded-md mr-2 hover:bg-gray-300"
         >
           Voice Input
         </button>
         {voiceClicked && (
           <button
-            onClick={handleVoiceClose}
+            // onClick={handleVoiceClose}
             className="bg-white text-custom-bg px-4 py-2 rounded-md hover:bg-gray-300"
           >
             Close Voice
