@@ -169,7 +169,7 @@ const HomePage: React.FC = () => {
   }, [taskInput, voiceClicked]);
 
   return (
-    <div className=" bg-cover bg-center min-h-screen p-20 bg-gradient-to-r from-indigo-500 from-10% via-sky-500 via-30% to-emerald-500 to-90%">
+    <div className=" bg-cover bg-center min-h-screen p-20 bg-gradient-to-r from-indigo-500 from-10% via-sky-500 via-30% to-emerald-500 to-90% ">
       <div className="bg-white dark:bg-slate-800 rounded-lg px-6 py-8 ring-1 ring-slate-900/5 shadow-xl">
         <div>
           <span className="inline-flex items-center justify-center p-2 bg-indigo-500 rounded-md shadow-lg">
@@ -180,7 +180,9 @@ const HomePage: React.FC = () => {
               viewBox="0 0 24 24"
               stroke="currentColor"
               aria-hidden="true"
-            ></svg>
+            >
+              😊
+            </svg>
           </span>
         </div>
         <ToastContainer />
@@ -200,14 +202,14 @@ const HomePage: React.FC = () => {
           <div className="mb-4">
             <button
               //onClick={handleVoiceInput}
-              className="bg-white text-custom-bg px-4 py-2 rounded-md mr-2 hover:bg-indigo-400 transition-transform duration-100"
+              className="bg-white text-custom-bg px-4 py-2 rounded-md mr-2 hover:bg-indigo-400 transition-transform delay-100"
             >
               Voice Input
             </button>
             {voiceClicked && (
               <button
                 // onClick={handleVoiceClose}
-                className="bg-white text-custom-bg px-4 py-2 rounded-md hover:bg-indigo-400 transition-transform duration-100"
+                className="bg-white text-custom-bg px-4 py-2 rounded-md hover:bg-indigo-400 transition-transform delay-100"
               >
                 Close Voice
               </button>
@@ -230,7 +232,7 @@ const HomePage: React.FC = () => {
                 addTask();
                 handleSubmit();
               }}
-              className="bg-white px-4 py-2 rounded-md hover:bg-indigo-400 transition-transform duration-100"
+              className="bg-white px-4 py-2 rounded-md hover:bg-indigo-400 transition-transform delay-100"
             >
               {editingTaskId !== null ? "Update Task" : "Submit"}
             </button>
@@ -246,13 +248,13 @@ const HomePage: React.FC = () => {
                   className="w-full p-2 rounded-md border bg-white absolute top-0 left-0"
                 />
               )}
-              <label className="text-white block mb-2">
+              <label className="text-white block mb-2 py-8 no-underline hover:underline ">
                 {editingTaskId !== task.id ? (
                   <>
                     Task: {task.task}
                     <button
                       onClick={() => editTask(task.id)}
-                      className="absolute top-0 right-0 p-2 text-blue-500 hover:bg-gray-300"
+                      className="absolute top-0 right-0 p-2 text-blue-500 hover:bg-gray-300 rounded-md"
                     >
                       Edit
                     </button>
@@ -274,7 +276,7 @@ const HomePage: React.FC = () => {
               )}
               <button
                 onClick={() => deleteTask(task.id)}
-                className="absolute top-0 right-10 p-2 text-red-500 hover:bg-gray-300"
+                className="absolute top-0 right-10 p-2 text-red-500 hover:bg-gray-300 rounded-md"
               >
                 Delete
               </button>
