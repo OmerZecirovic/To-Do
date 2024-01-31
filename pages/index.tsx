@@ -169,86 +169,51 @@ const HomePage: React.FC = () => {
   }, [taskInput, voiceClicked]);
 
   return (
-    <div className="bg-custom-bg p-4 rounded-md">
-      <ToastContainer />
-      <h1 className="text-black text-4xl text-center">To-Do List</h1>
-      <div className="mb-4">
-        <label className="text-black block mb-2">
-          Task:
-          <input
-            type="text"
-            value={taskInput}
-            onChange={handleTaskChange}
-            placeholder="Enter your task"
-            className="w-full p-2 rounded-md border bg-white"
-          />
-        </label>
-      </div>
-      <div className="mb-4">
-        <button
-          //onClick={handleVoiceInput}
-          className="bg-white text-custom-bg px-4 py-2 rounded-md mr-2 hover:bg-gray-300"
-        >
-          Voice Input
-        </button>
-        {voiceClicked && (
-          <button
-            // onClick={handleVoiceClose}
-            className="bg-white text-custom-bg px-4 py-2 rounded-md hover:bg-gray-300"
-          >
-            Close Voice
-          </button>
-        )}
-      </div>
-      <div className="mb-4">
-        <label className="text-black block mb-2">
-          Select Time:
-          <input
-            type="time"
-            value={selectedTime}
-            onChange={handleTimeChange}
-            className="w-full p-2 rounded-md border bg-white text-black"
-          />
-        </label>
-      </div>
-      <div>
-        <button
-          onClick={() => {
-            addTask();
-            handleSubmit();
-          }}
-          className="bg-white text-custom-bg px-4 py-2 rounded-md hover:bg-gray-300"
-        >
-          {editingTaskId !== null ? "Update Task" : "Submit"}
-        </button>
-      </div>
-      {tasks.map((task) => (
-        <div key={task.id} className="relative mb-4">
-          {editingTaskId === task.id && (
+    <div className=" bg-cover bg-center min-h-screen p-20 bg-gradient-to-r from-indigo-500 from-10% via-sky-500 via-30% to-emerald-500 to-90%">
+      <div className="bg-white dark:bg-slate-800 rounded-lg px-6 py-8 ring-1 ring-slate-900/5 shadow-xl">
+        <div>
+          <span className="inline-flex items-center justify-center p-2 bg-indigo-500 rounded-md shadow-lg">
+            <svg
+              className="h-6 w-6 text-white"
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+              aria-hidden="true"
+            ></svg>
+          </span>
+        </div>
+        <ToastContainer />
+        <h1 className="text-white text-4xl text-center">To-Do List</h1>
+        <div className="mb-4">
+          <label className="text-white block mb-2">
+            Task:
             <input
               type="text"
               value={taskInput}
               onChange={handleTaskChange}
               placeholder="Enter your task"
-              className="w-full p-2 rounded-md border bg-white absolute top-0 left-0"
+              className="w-full p-2 rounded-md border bg-white text-black"
             />
-          )}
-          <label className="text-black block mb-2">
-            {editingTaskId !== task.id ? (
-              <>
-                Task: {task.task}
-                <button
-                  onClick={() => editTask(task.id)}
-                  className="absolute top-0 right-0 p-2 text-blue-500 hover:bg-gray-300"
-                >
-                  Edit
-                </button>
-              </>
-            ) : (
-              "Task:"
-            )}
           </label>
-          {editingTaskId === task.id && (
+
+          <div className="mb-4">
+            <button
+              //onClick={handleVoiceInput}
+              className="bg-white text-custom-bg px-4 py-2 rounded-md mr-2 hover:bg-indigo-400 transition-transform duration-100"
+            >
+              Voice Input
+            </button>
+            {voiceClicked && (
+              <button
+                // onClick={handleVoiceClose}
+                className="bg-white text-custom-bg px-4 py-2 rounded-md hover:bg-indigo-400 transition-transform duration-100"
+              >
+                Close Voice
+              </button>
+            )}
+          </div>
+          <div className="mb-4">
             <label className="text-white block mb-2">
               Select Time:
               <input
@@ -258,15 +223,65 @@ const HomePage: React.FC = () => {
                 className="w-full p-2 rounded-md border bg-white text-black"
               />
             </label>
-          )}
-          <button
-            onClick={() => deleteTask(task.id)}
-            className="absolute top-0 right-10 p-2 text-red-500 hover:bg-gray-300"
-          >
-            Delete
-          </button>
+          </div>
+          <div>
+            <button
+              onClick={() => {
+                addTask();
+                handleSubmit();
+              }}
+              className="bg-white px-4 py-2 rounded-md hover:bg-indigo-400 transition-transform duration-100"
+            >
+              {editingTaskId !== null ? "Update Task" : "Submit"}
+            </button>
+          </div>
+          {tasks.map((task) => (
+            <div key={task.id} className="relative mb-4">
+              {editingTaskId === task.id && (
+                <input
+                  type="text"
+                  value={taskInput}
+                  onChange={handleTaskChange}
+                  placeholder="Enter your task"
+                  className="w-full p-2 rounded-md border bg-white absolute top-0 left-0"
+                />
+              )}
+              <label className="text-white block mb-2">
+                {editingTaskId !== task.id ? (
+                  <>
+                    Task: {task.task}
+                    <button
+                      onClick={() => editTask(task.id)}
+                      className="absolute top-0 right-0 p-2 text-blue-500 hover:bg-gray-300"
+                    >
+                      Edit
+                    </button>
+                  </>
+                ) : (
+                  "Task:"
+                )}
+              </label>
+              {editingTaskId === task.id && (
+                <label className="text-white block mb-2">
+                  Select Time:
+                  <input
+                    type="time"
+                    value={selectedTime}
+                    onChange={handleTimeChange}
+                    className="w-full p-2 rounded-md border bg-white text-black"
+                  />
+                </label>
+              )}
+              <button
+                onClick={() => deleteTask(task.id)}
+                className="absolute top-0 right-10 p-2 text-red-500 hover:bg-gray-300"
+              >
+                Delete
+              </button>
+            </div>
+          ))}
         </div>
-      ))}
+      </div>
     </div>
   );
 };
